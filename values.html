@@ -10,6 +10,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Load the hero photo early so it paints with the rest of the page -->
+<link rel="preload" as="image" href="assets/hero.jpeg" fetchpriority="high">
+
+<style>
+/* ----------------------------------------------------------------
+   HERO WALLPAPER
+   Photo lives at:  assets/hero.jpeg
+   Different filename? Change it in the <img src="..."> tag inside
+   <section class="hero"> below, and in the preload link above.
+------------------------------------------------------------------ */
+.hero{ position: relative; background-color: var(--navy-deep); overflow: hidden; }
+
+.hero-photo{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  border: 0;
+}
+
+.hero-tint{
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(8,29,58,0.95) 0%,
+    rgba(8,29,58,0.86) 32%,
+    rgba(8,29,58,0.55) 62%,
+    rgba(8,29,58,0.28) 100%);
+}
+
+.hero .hero-map{ opacity: 0.07; }
+
+/* Phones/tablets: layout stacks, so darken more and pull the subject in */
+@media (max-width: 980px){
+  .hero-photo{ object-position: 72% center; }
+  .hero-tint{
+    background: linear-gradient(180deg,
+      rgba(8,29,58,0.93) 0%,
+      rgba(8,29,58,0.88) 55%,
+      rgba(8,29,58,0.82) 100%);
+  }
+}
+
+/* Long email addresses shouldn't overflow the footer column */
+.footer-col a[href^="mailto:"]{ word-break: break-word; }
+.footer-col .role{
+  display:block; font-size:0.76rem; color:#8894a4; margin:-6px 0 12px;
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -39,6 +88,8 @@
 <main id="main">
 
   <section class="hero" style="padding: 68px 0 60px;">
+    <img class="hero-photo" src="assets/hero.jpeg" alt="" fetchpriority="high" decoding="async">
+    <div class="hero-tint" aria-hidden="true"></div>
     <div class="hero-map" aria-hidden="true"></div>
     <div class="container" style="position:relative; z-index:1;">
       <div class="hero-eyebrow">Principles that guide everything we do</div>
@@ -141,7 +192,10 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="tel:+250781404874">+250 781 404 874</a>
-        <p>Follow: EDUGLOBAL LTD</p>
+        <a href="mailto:info@eduglobal-ltd.com">info@eduglobal-ltd.com</a>
+        <span class="role">General enquiries</span>
+        <a href="mailto:rugerinyangeeric@eduglobal-ltd.com">rugerinyangeeric@eduglobal-ltd.com</a>
+        <span class="role">Office of the CEO</span>
       </div>
       <div class="footer-col">
         <h4>Follow us</h4>

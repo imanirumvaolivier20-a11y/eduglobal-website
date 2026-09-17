@@ -10,6 +10,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Load the hero photo early so it paints with the rest of the page -->
+<link rel="preload" as="image" href="assets/hero.jpeg" fetchpriority="high">
+
+<style>
+/* ----------------------------------------------------------------
+   HERO WALLPAPER
+   Put your photo here:   assets/hero.jpg
+   Different filename? Change it in ONE place: the <img src="..."> tag
+   inside <section class="hero"> below.
+------------------------------------------------------------------ */
+.hero{ position: relative; background-color: var(--navy-deep); overflow: hidden; }
+
+.hero-photo{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  border: 0;
+}
+
+.hero-tint{
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(8,29,58,0.95) 0%,
+    rgba(8,29,58,0.86) 32%,
+    rgba(8,29,58,0.55) 62%,
+    rgba(8,29,58,0.28) 100%);
+}
+
+.hero .hero-map{ opacity: 0.07; }
+
+/* Phones/tablets: layout stacks, so darken more and pull the subject in */
+@media (max-width: 980px){
+  .hero-photo{ object-position: 72% center; }
+  .hero-tint{
+    background: linear-gradient(180deg,
+      rgba(8,29,58,0.93) 0%,
+      rgba(8,29,58,0.88) 55%,
+      rgba(8,29,58,0.82) 100%);
+  }
+}
+
+/* Long email addresses shouldn't overflow the footer column */
+.footer-col a[href^="mailto:"]{ word-break: break-word; }
+.footer-col .role{
+  display:block; font-size:0.76rem; color:#8894a4; margin:-6px 0 12px;
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -28,7 +77,8 @@
       <a href="about.html">About Us</a>
       <a href="services.html">Services</a>
       <a href="values.html">Core Values</a>
-      <!-- <a href="projects.html">Ongoing Projects</a> </nav> -->
+      <!-- <a href="projects.html">Ongoing Projects</a> -->
+    </nav>
     <div class="header-cta">
       <a class="btn btn-outline btn-sm" href="tel:+250781404874">+250 781 404 874</a>
     </div>
@@ -39,10 +89,12 @@
 <main id="main">
 
   <section class="hero">
+    <img class="hero-photo" src="assets/hero.jpeg" alt="" fetchpriority="high" decoding="async">
+    <div class="hero-tint" aria-hidden="true"></div>
     <div class="hero-map" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div>
-        <div class="hero-eyebrow">A knowledge, education & human-capital company</div>
+        <div class="hero-eyebrow">A knowledge, education &amp; human-capital company</div>
         <h1>Empowering minds.<br>Enabling change.</h1>
         <p class="lede">EDUGLOBAL Ltd helps individuals and organisations grow through education, training, research, consultancy, AI solutions, and translation &amp; interpreting — built on evidence, delivered with care.</p>
         <div class="hero-actions">
@@ -203,15 +255,18 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="tel:+250781404874">+250 781 404 874</a>
-        <p>Follow: EDUGLOBAL LTD</p>
+        <a href="mailto:info@eduglobal-ltd.com">info@eduglobal-ltd.com</a>
+        <span class="role">General enquiries</span>
+        <a href="mailto:rugerinyangeeric@eduglobal-ltd.com">rugerinyangeeric@eduglobal-ltd.com</a>
+        <span class="role">Office of the CEO</span>
       </div>
       <div class="footer-col">
         <h4>Follow us</h4>
-                <div class="footer-social">
+        <div class="footer-social">
           <a href="https://www.facebook.com/profile.php?id=61593682513139" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.2-1.5 1.6-1.5h1.6V3.7C15.9 3.6 14.9 3.5 13.7 3.5c-2.6 0-4.4 1.6-4.4 4.5v2H6.6V13h2.7v8h4.2z"/></svg></a>
           <a href="https://www.instagram.com/eduglobaltd/?hl=en-in" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://x.com/eduglobal_ltd" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l7 8.4L4.3 20h2.3l5.9-6.4 4.6 6.4H21l-7.3-8.9L20.2 4h-2.3l-5.4 5.9L7.4 4H4z"/></svg></a>
-          <a href="https://www.tiktok.com/@eduglobal.ltd?_r=1&_t=ZS-99JZbqpMdFM" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3h2.2c.2 1.7 1.3 3 3.3 3.2v2.3c-1.2 0-2.4-.4-3.3-1v6.4a4.9 4.9 0 1 1-4.9-4.9c.3 0 .6 0 .9.1v2.3a2.6 2.6 0 1 0 1.8 2.5V3z"/></svg></a>
+          <a href="https://www.tiktok.com/@eduglobal.ltd?_r=1&amp;_t=ZS-99JZbqpMdFM" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3h2.2c.2 1.7 1.3 3 3.3 3.2v2.3c-1.2 0-2.4-.4-3.3-1v6.4a4.9 4.9 0 1 1-4.9-4.9c.3 0 .6 0 .9.1v2.3a2.6 2.6 0 1 0 1.8 2.5V3z"/></svg></a>
           <a href="https://www.youtube.com/@eduglobal_ltd" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.3 5 12 5 12 5s-3.3 0-6.1.2c-.4 0-1.3.1-2.1.9C3.2 6.7 3 8.2 3 8.2S2.8 10 2.8 11.8v1.4C2.8 15 3 16.8 3 16.8s.2 1.5.8 2.1c.8.8 1.9.8 2.3.9C7.7 20 12 20 12 20s3.3 0 6.1-.2c.4 0 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.4c0-1.8-.2-3.6-.2-3.6zM10 14.6V9.4l5 2.6-5 2.6z"/></svg></a>
         </div>
       </div>

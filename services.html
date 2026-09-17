@@ -10,6 +10,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Load the hero photo early so it paints with the rest of the page -->
+<link rel="preload" as="image" href="assets/hero.jpeg" fetchpriority="high">
+
+<style>
+/* ----------------------------------------------------------------
+   HERO WALLPAPER
+   Photo lives at:  assets/hero.jpeg
+   Different filename? Change it in the <img src="..."> tag inside
+   <section class="hero"> below, and in the preload link above.
+------------------------------------------------------------------ */
+.hero{ position: relative; background-color: var(--navy-deep); overflow: hidden; }
+
+.hero-photo{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  border: 0;
+}
+
+.hero-tint{
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(8,29,58,0.95) 0%,
+    rgba(8,29,58,0.86) 32%,
+    rgba(8,29,58,0.55) 62%,
+    rgba(8,29,58,0.28) 100%);
+}
+
+.hero .hero-map{ opacity: 0.07; }
+
+/* Phones/tablets: layout stacks, so darken more and pull the subject in */
+@media (max-width: 980px){
+  .hero-photo{ object-position: 72% center; }
+  .hero-tint{
+    background: linear-gradient(180deg,
+      rgba(8,29,58,0.93) 0%,
+      rgba(8,29,58,0.88) 55%,
+      rgba(8,29,58,0.82) 100%);
+  }
+}
+
+/* Long email addresses shouldn't overflow the footer column */
+.footer-col a[href^="mailto:"]{ word-break: break-word; }
+.footer-col .role{
+  display:block; font-size:0.76rem; color:#8894a4; margin:-6px 0 12px;
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -40,6 +89,8 @@
 <main id="main">
 
   <section class="hero" style="padding: 68px 0 60px;">
+    <img class="hero-photo" src="assets/hero.jpeg" alt="" fetchpriority="high" decoding="async">
+    <div class="hero-tint" aria-hidden="true"></div>
     <div class="hero-map" aria-hidden="true"></div>
     <div class="container" style="position:relative; z-index:1;">
       <div class="hero-eyebrow">What we offer</div>
@@ -57,8 +108,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 1 8l11 5 9-4.1V17"/><path d="M5 10.5V16c0 1.7 3.1 3 7 3s7-1.3 7-3v-5.5"/></svg>
           </div>
           <h3>Education</h3>
-          <p>Quality learning opportunities that inspire knowledge, critical thinking, and lifelong growth</p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
+          <p>Quality learning opportunities that inspire knowledge, critical thinking, and lifelong growth.</p>
         </div>
 
         <div class="service-card">
@@ -66,8 +116,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M9 20h6M12 16v4"/></svg>
           </div>
           <h3>Training</h3>
-          <p>Practical skills development and capacity building for individuals and organisations</p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
+          <p>Practical skills development and capacity building for individuals and organisations.</p>
         </div>
 
         <div class="service-card">
@@ -76,7 +125,6 @@
           </div>
           <h3>Research</h3>
           <p>Evidence-based research and data-driven insights for informed decisions and impact.</p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
         </div>
 
         <div class="service-card">
@@ -85,7 +133,6 @@
           </div>
           <h3>AI Solutions</h3>
           <p>AI-powered solutions, automation, and digital innovation that transform the way we work and learn.</p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
         </div>
 
         <div class="service-card">
@@ -94,7 +141,6 @@
           </div>
           <h3>Consultancy</h3>
           <p>Professional advisory services that drive growth, efficiency, and organisational excellence.</p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
         </div>
 
         <div class="service-card">
@@ -102,8 +148,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a7.5 7.5 0 0 1-11.4 6.4L4 19l1.2-4.5A7.5 7.5 0 1 1 21 11.5z"/></svg>
           </div>
           <h3>Translation &amp; Interpreting</h3>
-          <p>Accurate, culturally sensitive language services that connect people and bridge cultures. </p>
-          <div class="service-foot"><a class="btn btn-interested" href="projects.html">Interested</a></div>
+          <p>Accurate, culturally sensitive language services that connect people and bridge cultures.</p>
         </div>
 
       </div>  
@@ -113,7 +158,7 @@
   <section class="bg-paper center">
     <div class="container" style="max-width:640px;">
       <h2>Together, we learn today, lead tomorrow</h2>
-      <p style="margin:0 auto 24px;">Tap "Interested" on any service to see the projects we're currently running in that space.</p>
+      <p style="margin:0 auto 24px;">See the projects we're currently running across these service areas.</p>
       <a class="btn btn-primary" href="projects.html">View ongoing projects</a>
     </div>
   </section>
@@ -140,7 +185,10 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="tel:+250781404874">+250 781 404 874</a>
-        <p>Follow: EDUGLOBAL LTD</p>
+        <a href="mailto:info@eduglobal-ltd.com">info@eduglobal-ltd.com</a>
+        <span class="role">General enquiries</span>
+        <a href="mailto:rugerinyangeeric@eduglobal-ltd.com">rugerinyangeeric@eduglobal-ltd.com</a>
+        <span class="role">Office of the CEO</span>
       </div>
       <div class="footer-col">
         <h4>Follow us</h4>
